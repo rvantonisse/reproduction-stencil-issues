@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "reproduction-stencil-issues",
   "version": "0.0.1",
   "description": "Stencil Component Starter",
