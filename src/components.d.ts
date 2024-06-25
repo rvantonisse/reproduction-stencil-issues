@@ -6,56 +6,47 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
+    interface TestWatchOnly {
+    }
+    interface TestWatchWithProp {
+        "fakeProp": string;
     }
 }
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    interface HTMLTestWatchOnlyElement extends Components.TestWatchOnly, HTMLStencilElement {
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    var HTMLTestWatchOnlyElement: {
+        prototype: HTMLTestWatchOnlyElement;
+        new (): HTMLTestWatchOnlyElement;
+    };
+    interface HTMLTestWatchWithPropElement extends Components.TestWatchWithProp, HTMLStencilElement {
+    }
+    var HTMLTestWatchWithPropElement: {
+        prototype: HTMLTestWatchWithPropElement;
+        new (): HTMLTestWatchWithPropElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
+        "test-watch-only": HTMLTestWatchOnlyElement;
+        "test-watch-with-prop": HTMLTestWatchWithPropElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
+    interface TestWatchOnly {
+    }
+    interface TestWatchWithProp {
+        "fakeProp"?: string;
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
+        "test-watch-only": TestWatchOnly;
+        "test-watch-with-prop": TestWatchWithProp;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "test-watch-only": LocalJSX.TestWatchOnly & JSXBase.HTMLAttributes<HTMLTestWatchOnlyElement>;
+            "test-watch-with-prop": LocalJSX.TestWatchWithProp & JSXBase.HTMLAttributes<HTMLTestWatchWithPropElement>;
         }
     }
 }
